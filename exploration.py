@@ -23,23 +23,23 @@ class Exploration:
         """
         Renvoie un nouveau noeud à explorer
         """
-
-        min = 10**8
-
-        for nodeKey in self.open.keys():
-            #if(self.open[nodeKey].g < min):
-            #print(self.open[nodeKey].etat)
-            if(self.critere(self.open[nodeKey]) < min):    
-                #min = self.open[nodeKey].g
-                min = self.critere(self.open[nodeKey])
-                minindice = nodeKey
-
-        minode = self.open[minindice]
-        del self.open[minindice]
-
-
-        #print("minode", minode)
-        return minode
+        
+       
+        
+        min=10**8
+        noeud=0
+        liste = []
+        for i in self.open.values():
+            liste += [i]
+        for j in range (0,len(liste)):
+            if self.critere(liste[j])<min :
+                min = self.critere(liste[j])
+                noeud = liste[j]
+        del self.open[noeud.etat]
+        # À implémenter
+        self.n_explores+=1
+        return noeud
+        
 
 
     def mettre_a_jour_arbre(self, nouveaux_noeuds):
@@ -105,6 +105,7 @@ class Exploration:
         #print("open" , self.open)
 
         while(self.open != {}): #tant que open n'est pas vide
+            print("un tour")
             """
             print("openDeb")
             self.printopen()
@@ -120,6 +121,7 @@ class Exploration:
             if(      self.probleme.but(noeud_courant.etat)   ):
                 print("solution ?")
                 return self.makeSolution()
+                #return Noeud.reconstruire_chemin(noeud_courant)
 
             else:
 
@@ -158,9 +160,17 @@ class Exploration:
             node = node.parent
         return res[::-1]
 
+
+
+
+
+
+
     def printopen(self):
         for key in self.open.keys():
             print(self.open[key])
+
+
     def printclose(self):
         print("----------------------")
         for key in self.close.keys():

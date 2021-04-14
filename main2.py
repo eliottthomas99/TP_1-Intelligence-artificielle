@@ -1,17 +1,13 @@
 import time
 from noeud import Noeud
 from exploration import Exploration
-from taquin.probleme import Probleme
-from taquin.etat import Etat
+from labyrinthe.probleme import Probleme
+from labyrinthe.etat import Etat
 
+plateau = [[3,0,0],[0,1,1],[0,0,2]]
 
-###############################################
-# Taquin
-###############################################
+but = [[0,0,0],[0,1,1],[0,2,3]]
 
-plateau = [[1,2,3],[4,5,0],[6,7,8]]
-#plateau = [[1,0,3],[5,2,6],[4,7,8]]
-but = [[1,2,3],[4,5,6],[7,8,0]]
 
 etat_cible = Etat(but)
 

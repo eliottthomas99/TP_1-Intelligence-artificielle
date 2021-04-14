@@ -1,11 +1,11 @@
 import random
 import abstraction.probleme
-from taquin.action import Action
-from taquin.etat import Etat
+from labyrinthe.action import Action
+from labyrinthe.etat import Etat
 
 class Probleme(abstraction.probleme.Probleme):
     """
-    Classe représentant le problème du taquin comme :
+    Classe représentant le problème du labyrinthe comme :
     - un état initial
     - un prédicat but()
     - une méthode transition()
@@ -32,12 +32,11 @@ class Probleme(abstraction.probleme.Probleme):
         Renvoie la liste des actions possibles à partir d'un état donné
         """
         actions = []
-
-    
-        x, y = etat.position_vide
+        print(etat.position_recherche)
+        x, y = etat.position_recherche
         for action in Action.actions_possibles():
             dx, dy = action.vecteur()
-            if x+dx >= 0 and y+dy >= 0 and x+dx < etat.width and y+dy < etat.width :
+            if x+dx >= 0 and y+dy >= 0 and x+dx < etat.width and y+dy < etat.width and (etat.plateau[x+dx][y+dy]) != 1:
                 actions.append(action)
         return actions
 
