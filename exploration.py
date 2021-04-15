@@ -105,7 +105,7 @@ class Exploration:
         #print("open" , self.open)
 
         while(self.open != {}): #tant que open n'est pas vide
-            print("un tour")
+            #print("un tour")
             """
             print("openDeb")
             self.printopen()

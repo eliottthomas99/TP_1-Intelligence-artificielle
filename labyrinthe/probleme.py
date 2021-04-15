@@ -32,7 +32,7 @@ class Probleme(abstraction.probleme.Probleme):
         Renvoie la liste des actions possibles à partir d'un état donné
         """
         actions = []
-        print(etat.position_recherche)
+        #print(etat.position_recherche)
         x, y = etat.position_recherche
         for action in Action.actions_possibles():
             dx, dy = action.vecteur()
@@ -88,3 +88,20 @@ class Probleme(abstraction.probleme.Probleme):
                     compteur+=1
 
         return compteur
+
+    def heuristique_labyrinthe(self,etat):
+        x_pos=0
+        y_pos=0
+        x_fin=0
+        y_fin=0
+        h=0
+        for x in range (etat.width):
+            for y in range(etat.width):
+                if etat.plateau[x][y] == 3:
+                    x_pos=x
+                    y_pos=y
+                if etat.plateau[x][y] == 2:
+                    x_fin=x
+                    y_fin=y
+        h=ceil(math.sqrt(((x_fin-x_pos)**2)+((y_fin-y_pos)**2)))
+        return h
